@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DevRoof API HTML parser Broker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.min.css" />
+    <!--[if lt IE 9]>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.ie.min.css" />
+    <![endif]-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v0.4.1/dist/bootstrap-toc.min.css">
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.css" />
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials-theme-classic.css" />
+
+    <style>
+        .right .github-fork-ribbon {
+            background-color: #563d7c;
+            display: none;
+        }
+        
+        .container {
+            max-width: 800px;
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
+        
+        .hint {
+            color: #563d7c;
+            display: inline-block;
+            font-weight: bold;
+            left: 20px;
+            /* match the left margin of the top-level nav items */
+            position: relative;
+            top: 0.5em;
+        }
+        
+        .hint:before {
+            content: 'â†‘';
+            display: block;
+            font-size: 3em;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+        }
+        /* small screens */
+        
+        @media (max-width: 768px) {
+            /* override the Affix plugin so that the navigation isn't sticky */
+            nav.affix[data-toggle='toc'] {
+                position: static;
+            }
+            /* display the second-level nav */
+            nav[data-toggle='toc'] .nav .nav {
+                display: block;
+            }
+            .hint {
+                top: 0;
+            }
+        }
+        /* large screens */
+        
+        @media (min-width: 768px) {
+            h1:first-child {
+                margin-top: 0;
+            }
+        }
+    </style>
+
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+    <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v0.4.1/dist/bootstrap-toc.min.js"></script>
+</head>
+
+<body data-spy="scroll" data-target="#toc">
+    <div class="github-fork-ribbon-wrapper right">
+        <div class="github-fork-ribbon">
+            <a href="https://github.com/afeld/bootstrap-toc">Fork sample on GitHub</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <nav id="toc" data-spy="affix" data-toggle="toc"></nav>
+            </div>
+            <div class="col-sm-9">
+                <h1 class="page-header" id="table-of-contents-plugin-for-bootstrap">DevRoof API HTML parser Broker</h1>
+
+                <p>This <a href="https://php.net/">PHP</a> script allows you to generate a json file with choosen field of any HTML page contents. All you have to do is to include the class
+                    <strong>class_parserbroker.php</strong> (
+                    <code class="highlighter-rouge">require_once(__DIR__ . '/include/class_parserbroker.php');</code>), to create an <strong>HTMLListBroker</strong> object (<code>$o = new HTMLListBroker($url,$token);</code>), to map required fields from HTML (<code class="highlighter-rouge">$o-&#x3E;addField(&#x3C;fieldname&#x3E;,&#x3C;parse_begin&#x3E;,&#x3C;parse_end&#x3E;);</code>), and finally call the method <strong>parseHTML</strong> (<code>$data = $o->parseHTML();</code>). With only that you can read any field or list of fields of any HTML.</p>
+
+                <p><strong>DevRoof API HTML parser Broker</strong> uses the advantage of <a href="http://api.DevRoof.com/?help">DevRoof</a> remote access to parse any URL and to produce a ready to use JSON file.</p>
+
+                <h2 id="usage">Usage</h2>
+
+
+
+                <p>On top of the normal PHP program you have to include the class <strong>class_parserbroker.php</strong>. Further info on doing that can be found on <a href="https://php.net/">PHP</a> home page regarding <strong><a href="http://php.net/manual/en/function.require-once.php">require once</a> </strong> command.</p>
+
+                <div class="language-html highlighter-rouge"><pre class="highlight"><code><span>&#x3C;?php</span>
+<span>   // Include required class</span>
+<span>   require_once(__DIR__ . &#x27;/include/class_parserbroker.php&#x27;);</span>
+                
+</code></pre>
+                </div>
+
+                <!--p><a href="https://github.com/afeld/bootstrap-toc/tree/gh-pages/dist">version without class usage</a> are also available.</p-->
+
+                <p>Next, instanciate the <strong>HTMLListBroker</strong>.</p>
+                <pre><code><span></span>
+<span>   // Get search parameter</span>
+<span>   $s = @$_REQUEST[&#x27;s&#x27;];</span>
+<span>   if (empty($s)) $s = &#x22;API&#x22;;</span>
+<span></span>
+<span>   // Define the token for each list occurrence in HTML</span>
+<span>   $token = &#x27;&#x3C;li id=&#x22;result_&#x27;;</span>
+<span></span>
+<span>   // Define target URL</span>
+<span>   $url = &#x22;https://www.amazon.com/s/ref=nb_sb_noss_2?url=search-alias%3Dstripbooks&#x26;field-keywords=&#x22; . urlencode($s);</span>
+<span>   // Create HTMLList Object</span>
+<span>   $o = new HTMLListBroker($url,$token);</span>
+<span></span>
+</code></pre>
+
+                <p>Next, map the fields you want using <strong>addField</strong> method.</p>
+                <pre><code><span></span>
+<span>  $o-&#x3E;addField(&#x27;title&#x27;,&#x27;a-text-normal&#x22; title=&#x22;&#x27;,&#x27;&#x22;&#x27;);</span>
+<span>  $o-&#x3E;addField(&#x27;author&#x27;,&#x27;by &#x3C;/span&#x3E;&#x3C;span class=&#x22;a-size-small a-color-secondary&#x22;&#x3E;&#x27;,&#x27;&#x3C;&#x27;);</span>
+<span>  $o-&#x3E;addField(&#x27;cover&#x27;,&#x27;&#x22;&#x3E;&#x3C;img src=&#x22;&#x27;,&#x27;&#x22;&#x27;);</span>
+<span>  $o-&#x3E;addField(&#x27;link&#x27;,&#x27;a-text-normal&#x22; href=&#x22;&#x27;,&#x27;&#x22;&#x27;);</span>                
+<span></span>
+</code></pre>
+                <p>Finally, call <strong>parseHTML</strong> to retrieve all parsed fields into a array variable.</p>
+                <pre><code><span></span>
+<span>  $ret = $o-&#x3E;parseHTML();</span>
+<span>  $o-&#x3E;json_out($ret);</span>                
+<span></span>
+</code></pre>
+
+                <h2 id="options">Methods and Options</h2>
+
+                <h5><strong>HTMLListBroker(url,token,[list=true]);</strong></h5>
+                <p>When creating an object of type <strong>HTMLListBroker</strong>, you must pass the target <strong>url</strong> and <strong>token</strong>. The <strong>list</strong> parameter is optional. See all parameters:</p>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>option</th>
+                            <th>type</th>
+                            <th>notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code class="highlighter-rouge">url</code></td>
+                            <td>string</td>
+                            <td>(required) Indicates the target URL to be parsed.</td>
+                        </tr>
+                        <tr>
+                            <td><code class="highlighter-rouge">token</code></td>
+                            <td>string</td>
+                            <td>Indicates what is the string in HTML tha represents a break line where each record (all fields) will be parsed.</td>
+                        </tr>
+                        <tr>
+                            <td><code class="highlighter-rouge">list</code></td>
+                            <td>boolean</td>
+                            <td>
+                                <p>(optional) Indicates if parser will return a list or not. Default is <strong>true</strong>.</p>
+                                <p>If only one record will be return from parse result, set this parameter to <strong>false </strong>.</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+
+                <h5><strong>addField(field_name,begin,end,type=&#x22;C&#x22;,prefix=null,sufix=null,token_begin=null,token_end=null)
+</strong></h5>
+                <p>Used to map fields inside HTML. You must identify the starting position and the end position of each field you want to retrive from URL. See all parameters:</p>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>option</th>
+                            <th>type</th>
+                            <th>notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code class="highlighter-rouge">fieldname</code></td>
+                            <td>string</td>
+                            <td>(required) Name of field in returnig JSON.</td>
+                        </tr>
+                        <tr>
+                            <td><code class="highlighter-rouge">begin</code></td>
+                            <td>string</td>
+                            <td>(required) Indicates the begining string where the field is located in HTML.</td>
+                        </tr>
+                        <tr>
+                            <td><code class="highlighter-rouge">end</code></td>
+                            <td>string</td>
+                            <td>(required) Indicates the ending string where the field is located in HTML.</td>
+                        </tr>
+                        <tr>
+                            <td><code class="highlighter-rouge">type</code></td>
+                            <td>string</td>
+                            <td>
+                                <p>(optional) fixed to "C". (Reserved for future implementation)</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code class="highlighter-rouge">prefix</code></td>
+                            <td>string</td>
+                            <td>
+                                <p>(optional) String to be added as a prefix to returning field.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code class="highlighter-rouge">sufix</code></td>
+                            <td>string</td>
+                            <td>
+                                <p>(optional) String to be added as a sufix to returning field.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code class="highlighter-rouge">token_begin</code></td>
+                            <td>string</td>
+                            <td>
+                                <p>(optional) Indicates a begining token to return a substring of the returning field.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code class="highlighter-rouge">token_end</code></td>
+                            <td>string</td>
+                            <td>
+                                <p>(optional) Indicates the ending token to return a substring of the returning field.</p>
+                            </td>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+
+
+                <h5><strong>parseHTML()</strong></h5>
+                <p>After you have configured the parser object and mapped all fields you must call the <code>$ret = $o-&#x3E;parseHTML();</code> method in order to retrieve a list of records or a single record from HTML parser result. See all parameters:</p>
+                <p>There is no parameters to be passed to this method.</p>
+
+                <h2 id="customization">How to create the JSON</h2>
+                <p>The result of <strong>parseHTML()</strong> is an array with one or more records, resulting of HTML parser. So, all you have to do to get a JSON from this to use the PHP command <code>json_encode</code>. Further information on how to use it can be found <a href="http://php.net/manual/en/function.json-encode.php">here.</a></p>
+
+                <p>For example:</p>
+                <pre><code> <span>   ...</span>
+<span>   $ret = $o-&#x3E;parseHTML();</span>
+<span>   $json = json_encode($ret);</span>
+<span>   header(&#x27;Content-Type: application/json&#x27;);</span>
+<span>   echo $json;</span>
+</code></pre>
+                <h2 id="customization">Full Source Code</h2>
+                <pre><code> <span></span>
+<span>&#x3C;?php</span>
+<span>  require_once(__DIR__ . &#x27;/include/class_parserbroker.php&#x27;);</span>
+<span>  $s = @$_REQUEST[&#x27;s&#x27;];</span>
+<span>  if (empty($s)) $s = &#x22;API&#x22;;</span>
+<span>  $token = &#x27;&#x3C;li id=&#x22;result_&#x27;;</span>
+<span>  $url = &#x22;https://www.amazon.com/s/ref=nb_sb_noss_2?url=search-alias%3Dstripbooks&#x26;field-keywords=&#x22; . urlencode($s);</span>
+<span></span>
+<span>  $o = new HTMLListBroker($url,$token);</span>
+<span>  $o-&#x3E;addField(&#x27;title&#x27;,&#x27;a-text-normal&#x22; title=&#x22;&#x27;,&#x27;&#x22;&#x27;);</span>
+<span>  $o-&#x3E;addField(&#x27;author&#x27;,&#x27;by &#x3C;/span&#x3E;&#x3C;span class=&#x22;a-size-small a-color-secondary&#x22;&#x3E;&#x27;,&#x27;&#x3C;&#x27;);</span>
+<span>  $o-&#x3E;addField(&#x27;cover&#x27;,&#x27;&#x22;&#x3E;&#x3C;img src=&#x22;&#x27;,&#x27;&#x22;&#x27;);</span>
+<span>  $o-&#x3E;addField(&#x27;link&#x27;,&#x27;a-text-normal&#x22; href=&#x22;&#x27;,&#x27;&#x22;&#x27;);</span>
+<span>  $ret = $o-&#x3E;parseHTML();</span>
+<span>  $o-&#x3E;json_out($ret);</span>
+<span>?&#x3E;</span>
+</code></pre>
+                <h2 id="customization">Resulting JSON</h2>
+                <pre><code> <span></span>
+<span>[</span>
+<span>    {</span>
+<span>        &#x22;title&#x22;: &#x22;Build APIs You Won&#x26;#39;t Hate: Everyone and their dog wants an API, so you should probably learn how to build them&#x22;,</span>
+<span>        &#x22;author&#x22;: &#x22;Phil Sturgeon and&#x22;,</span>
+<span>        &#x22;cover&#x22;: &#x22;https://images-na.ssl-images-amazon.com/images/I/41A-D5UDB+L._AC_US174_.jpg&#x22;,</span>
+<span>        &#x22;link&#x22;: &#x22;https://www.amazon.com/Build-APIs-You-Wont-Hate/dp/0692232699/ref=sr_1_1/168-3678608-1541913?s=books&#x26;amp;ie=UTF8&#x26;amp;qid=1472164698&#x26;amp;sr=1-1&#x26;amp;keywords=API&#x22;</span>
+<span>    },</span>
+<span>    {</span>
+<span>        &#x22;title&#x22;: &#x22;APIs: A Strategy Guide&#x22;,</span>
+<span>        &#x22;author&#x22;: &#x22;&#x22;,</span>
+<span>        &#x22;cover&#x22;: &#x22;https://images-na.ssl-images-amazon.com/images/I/51RXC8YhjPL._AC_US174_.jpg&#x22;,</span>
+<span>        &#x22;link&#x22;: &#x22;https://www.amazon.com/APIs-Strategy-Guide-Daniel-Jacobson/dp/1449308929/ref=sr_1_2/168-3678608-1541913?s=books&#x26;amp;ie=UTF8&#x26;amp;qid=1472164698&#x26;amp;sr=1-2&#x26;amp;keywords=API&#x22;</span>
+<span>    },</span>
+<span>    {</span>
+<span>        &#x22;title&#x22;: &#x22;The API Economy: Disruption and the Business of APIs&#x22;,</span>
+<span>        &#x22;author&#x22;: &#x22;Chris Wood and&#x22;,</span>
+<span>        &#x22;cover&#x22;: &#x22;https://images-na.ssl-images-amazon.com/images/I/51p3TWcHzlL._AC_US174_.jpg&#x22;,</span>
+<span>        &#x22;link&#x22;: &#x22;https://www.amazon.com/API-Economy-Disruption-Business-APIs-ebook/dp/B01F2PIP3Q/ref=sr_1_3/168-3678608-1541913?s=books&#x26;amp;ie=UTF8&#x26;amp;qid=1472164698&#x26;amp;sr=1-3&#x26;amp;keywords=API&#x22;</span>
+<span>    },</span>
+<span>    {</span>
+<span>        &#x22;title&#x22;: &#x22;API-Driven DevOps: Strategies for Continuous Deployment&#x22;,</span>
+<span>        &#x22;author&#x22;: &#x22;Chris Wood and&#x22;,</span>
+<span>        &#x22;cover&#x22;: &#x22;https://images-na.ssl-images-amazon.com/images/I/41WqGy5KCQL._AC_US174_.jpg&#x22;,</span>
+<span>        &#x22;link&#x22;: &#x22;https://www.amazon.com/API-Driven-DevOps-Strategies-Continuous-Deployment-ebook/dp/B01GP0Y5XQ/ref=sr_1_4/168-3678608-1541913?s=books&#x26;amp;ie=UTF8&#x26;amp;qid=1472164698&#x26;amp;sr=1-4&#x26;amp;keywords=API&#x22;</span>
+<span>    },</span>
+<span>&#x9;{</span>
+<span>&#x9;...</span>
+<span>&#x9;}</span>
+<span>]</span>
+</code></pre>
+
+                <h2 id="customization">Debuging</h2>
+
+                <p>The following methods can be used to help on debug your map fields task.</p>
+
+                <h2 id="see-also">See also</h2>
+
+                <p>There are more samples you can poke around into:</p>
+
+                <ul>
+                    <li><a href="http://examples.devroof.com/amazon">Amazon</a></li>
+                    <li><a href="http://examples.devroof.com/booking">Booking</a></li>
+                    <li><a href="http://examples.devroof.com/youtube">youtube</a></li>
+                    <!--li><a href="#">Google Search</a></li-->
+                    <!--li><a href="#">Google Translate</a></li-->
+                </ul>
+
+                <h2 id="contributing">Contributing</h2>
+
+                <p>Questions, feature suggestions, and bug reports/fixes welcome! Just send me an email acbarbosa@gmail.com</p>
+
+                <h3 id="manual-testing">Localhost Testing</h3>
+
+                <ol>
+                    <li>Webserver needed. Example: <code class="highlighter-rouge">wamp</code>.</li>
+                    <li>Copy files to a folder inside www. Example: <code class="highlighter-rouge">c:/wamp/www/glapi</code>.</li>
+                    <li>Open the various test:
+                        <ul>
+                            <li><a href="http://examples.devroof.com/amazon">Amazon</a></li>
+                            <li><a href="http://examples.devroof.com/booking">Booking</a></li>
+                            <li><a href="http://examples.devroof.com/youtube">youtube</a></li>
+                            <!--li><a href="#">Google Search</a></li-->
+                            <!--li><a href="#">Google Translate</a></li-->
+                        </ul>
+                    </li>
+                </ol>
+
+                <h3 id="automated-testing">Production Test</h3>
+
+                <ol>
+                    <li>Transfer files using a <code class="highlighter-rouge">FTP Client</code>.</li>
+                    <li>Call your webserver. Examples:
+                        <ul>
+                            <li><a href="http://examples.devroof.com/amazon">Amazon</a></li>
+                            <li><a href="http://examples.devroof.com/booking">Booking</a></li>
+                            <li><a href="http://examples.devroof.com/youtube">youtube</a></li>
+                            <!--li><a href="#">Google Search</a></li-->
+                            <!--li><a href="#">Google Translate</a></li-->
+                        </ul>
+                    </li>
+                </ol>
+                <footer>
+                    <footer class="pull-right">
+                        <hr>
+                        <div id="share"></div>
+                    </footer>
+                </footer>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#share").jsSocials({
+                shares: ["email", "twitter", "facebook", "googleplus", "linkedin", "pinterest", "stumbleupon", "whatsapp"]
+            });
+        });
+
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-87495445-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+</body>
+
+</html>
